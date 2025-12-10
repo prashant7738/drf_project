@@ -15,6 +15,9 @@ from blog.serializers import blog_serializer , comment_serializer
 # now using mixins and generics 
 from rest_framework import mixins , generics , viewsets
 
+# for pagination
+from .paginations import CustomPagination
+
 
 
 
@@ -234,12 +237,26 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     
+    # for pagination for this class only
+    pagination_class = CustomPagination
     
     
-class blogsView(generics.ListCreateAPIView):
+    
+class blogsList(generics.ListCreateAPIView):
     queryset = blog.objects.all()
     serializer_class = blog_serializer
     
-class commentsView(generics.ListCreateAPIView):
+class commentsList(generics.ListCreateAPIView):
     queryset = comment.objects.all()
     serializer_class = comment_serializer
+    
+    
+class blogsListView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = blog.objects.all()
+    serializer_class = blog_serializer
+    lookup_field = "pk"
+    
+class commentsListView(generics.RetrieveUpdateAPIView):
+    queryset = comment.objects.all()
+    serializer_class = comment_serializer
+    lookup_field = "pk"

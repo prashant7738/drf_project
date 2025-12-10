@@ -15,6 +15,14 @@ urlpatterns = [
     
     path('' , include(router.urls)),
     
-    path('blogs/',views.blogsView.as_view()),
-    path('comments/',views.commentsView.as_view()),
+    
+    # for blogs and comments
+    
+    path('blogs/',views.blogsList.as_view()),
+    path('comments/',views.commentsList.as_view()),
+    
+    #   primary key based operation 
+    path('comments/<int:pk>',views.commentsListView.as_view()),
+    path('blogs/<int:pk>/',views.blogsListView.as_view()),
+    
 ]
