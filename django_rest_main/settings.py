@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'students',
     'employee',
     'blog',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -126,8 +127,15 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# for global pagination
+
 REST_FRAMEWORK = {
+    # # for global pagination
+    
     # 'DEFAULT_PAGINATION_CLASS':'api.paginations.CustomPagination',
     # 'PAGE_SIZE': 2, 
+    
+    
+    # FOR DEFAULT SEARCH FILTERING
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    
 }

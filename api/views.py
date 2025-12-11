@@ -18,6 +18,13 @@ from rest_framework import mixins , generics , viewsets
 # for pagination
 from .paginations import CustomPagination
 
+# # for search filtering 
+# from rest_framework import filters
+
+# FOR CUSTOM FILTERING 
+from django_filters.rest_framework import DjangoFilterBackend
+from employee.filters import EmployeeFilter
+
 
 
 
@@ -240,6 +247,13 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     # for pagination for this class only
     pagination_class = CustomPagination
     
+    # # FOR SEARCH FILTERING
+    # filter_backends = [filters.SearchFilter]
+    # search_fields = ['designation']
+    
+    # FOR CUSTOM FILTERING 
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = EmployeeFilter
     
     
 class blogsList(generics.ListCreateAPIView):
