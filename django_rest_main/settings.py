@@ -138,4 +138,10 @@ REST_FRAMEWORK = {
     # FOR DEFAULT SEARCH FILTERING
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     
+    # FOR SEARCHING with custom paramater
+    'SEARCH_PARAM' : 'q',
+    # FOR ORDERING WITH CUSTOM PARAMETER
+    'ORDERING_PARAM' : 'order_by',
+    
+    
 }

@@ -26,6 +26,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 from employee.filters import EmployeeFilter
 
 
+# For searching which only works for charfield , text fields ..
+
+from rest_framework.filters import SearchFilter , OrderingFilter
 
 
 
@@ -259,6 +262,16 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 class blogsList(generics.ListCreateAPIView):
     queryset = blog.objects.all()
     serializer_class = blog_serializer
+    # FOR SEARCHING 
+    filter_backends = [SearchFilter ]
+    
+    # search_fields = ['blog_title' , 'blog_body'] # This is for searching anywhere on the content
+    # FOR SEARCHING ONLY IF START OF IT CONTAINS IT WE USE ^
+    search_fields = ['^blog_title']
+    
+    # NOW FOR ORDERING i.e. ascending and descending order
+    filter_backends += [OrderingFilter]
+    ordering_fields = ['id']
     
 class commentsList(generics.ListCreateAPIView):
     queryset = comment.objects.all()
